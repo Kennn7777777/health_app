@@ -15,6 +15,7 @@ module.exports = {
 
       // save to database
       await newUser.save();
+
       res.status(200).json("user registered successfully");
     } catch (error) {
       res.status(500).json("failed to register");
@@ -36,7 +37,7 @@ module.exports = {
       if (user.password !== password) {
         return res.status(401).json("invalid password");
       }
-
+      console.log("login");
       res.status(200).json("login successfully");
     } catch (error) {
       res.status(500).json("login failed");
