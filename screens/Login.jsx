@@ -30,7 +30,7 @@ export default function ({ setIsLogin }) {
   const handleLogin = async () => {
     try {
       const data = { email: email, password: password };
-      console.log(data);
+
       const response = await axios.post(`${Constants.url}/login`, data);
       if (response.status === 200) {
         const { userId } = response.data;

@@ -8,13 +8,12 @@ const useFetchHospitals = () => {
   const [error, setError] = useState(null);
 
   const fetchHospitals = async () => {
-    console.log("START");
     setIsLoading(true);
 
     try {
       const response = await axios.get(`${Constants.url}/api/hospital`);
       setData(response.data);
-      console.log(response.data);
+
       setIsLoading(false);
     } catch (error) {
       console.log(error);

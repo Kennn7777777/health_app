@@ -69,7 +69,7 @@ export default function AppointmentSection({ id }) {
 
   function onDateChange(date) {
     setSelectedDate(date.dateString);
-    // console.log(date.dateString);
+
     setShowCalendarModal(false);
   }
 
@@ -99,18 +99,15 @@ export default function AppointmentSection({ id }) {
               `${Constants.url}/api/appointments/new`,
               submitData
             );
-            // console.log(response.data);
+
             Alert.alert("Success", "Booking success!");
             navigation.replace("Appointment");
           } catch (error) {
             Alert.alert("Submit fail");
-            console.log(error);
           }
         },
       },
     ]);
-
-    // console.log(submitData);
   };
 
   return (

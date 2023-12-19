@@ -24,8 +24,6 @@ app.use("/", generalRouter);
 app.use("/api/appointments", apptRouter);
 app.use("/api/hospital", hospitalRouter);
 
-// app.use("/api/user", userRouter);
-
 app.listen(process.env.PORT || port, () =>
   console.log(`Healthapp api server listening on port ${port}!`)
 );

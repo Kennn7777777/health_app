@@ -44,7 +44,7 @@ export default function AppointmentCardItem({
             userId: user_id,
             apptId: healthcare._id,
           };
-          console.log(submitData);
+
           try {
             await axios.delete(`${Constants.url}/api/appointments/delete`, {
               data: submitData,

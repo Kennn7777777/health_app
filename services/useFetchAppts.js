@@ -22,7 +22,7 @@ const useFetchAppts = (userId) => {
         `${Constants.url}/api/appointments/${id}`
       );
       setData(response.data.appointments);
-      //   console.log(data);
+
       setIsLoading(false);
     } catch (error) {
       console.log(error);

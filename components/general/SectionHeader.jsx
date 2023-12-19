@@ -13,29 +13,6 @@ export default function SectionHeader({
   showView = true,
 }) {
   const navigation = useNavigation();
-  // const { data, isLoading, error, postData } = useFetch();
-
-  // const handleLogin = async () => {
-  //   console.log("handleLogin");
-  //   const user = {
-  //     email: "12345",
-  //     password: "asdasdasdasd",
-  //   };
-
-  //   // axios
-  //   //   .post("http://10.0.2.2:3000/login/", user)
-  //   //   .then((response) => {
-  //   //     console.log("response");
-  //   //     console.log(response.data);
-  //   //   })
-  //   //   .catch((error) => {
-  //   //     console.log("error");
-  //   //     console.log(error);
-  //   //   });
-
-  //   await postData(user);
-  //   console.log(data);
-  // };
 
   return (
     <View

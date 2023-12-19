@@ -16,33 +16,6 @@ export default function Appointment({ navigation }) {
   const { data, isLoading, error } = useFetchAppts();
   // const apptList = data?.appointments;
 
-  // const healthcare = [
-  //   {
-  //     id: 1,
-  //     name: "Hospital ABC",
-  //     imageUrl: "https://picsum.photos/300",
-  //     address: "11 Jln Tan Tock Seng, Singapore 308433",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Hospital 123",
-  //     imageUrl: "https://picsum.photos/300",
-  //     address: "11 Jln Tan Tock Seng, Singapore 308433",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Hospital 123",
-  //     imageUrl: "https://picsum.photos/300",
-  //     address: "11 Jln Tan Tock Seng, Singapore 308433",
-  //   },
-  // ];
-
-  // fetch all upcoming and history appointments
-  const fetchData = async () => {
-    console.log(apptList);
-    // load all at one go then filter from there
-  };
-
   return (
     <View style={{ flex: 1, marginHorizontal: 22, marginTop: 20 }}>
       <View
@@ -56,7 +29,6 @@ export default function Appointment({ navigation }) {
         <TouchableOpacity
           onPress={() => {
             SetIsActiveTab(0);
-            // fetchData();
           }}
         >
           <Text style={activeTab === 0 ? styles.active : styles.inactive}>

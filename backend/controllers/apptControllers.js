@@ -24,7 +24,6 @@ module.exports = {
 
       res.status(200).json("booked successfully!");
     } catch (error) {
-      console.log(error);
       res.status(500).json("fail to book");
     }
   },
@@ -47,8 +46,6 @@ module.exports = {
         })
         .select("appointments hospital -_id");
 
-      // console.log(appts);
-
       res.status(200).json(appts);
     } catch (error) {
       console.log(error);
@@ -61,10 +58,9 @@ module.exports = {
     try {
       const { userId, apptId } = req.body;
 
-      // console.log(user);
       const user = await User.findById(userId);
       await Appointment.findByIdAndDelete(apptId);
-      // console.log(userId, apptId);
+
       user.appointments = user.appointments.filter(
         (appt) => !appt.equals(apptId)
       );
