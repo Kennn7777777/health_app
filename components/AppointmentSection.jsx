@@ -16,6 +16,7 @@ import Constants from "../Shared/Constants";
 import { useNavigation } from "@react-navigation/native";
 import Colours from "../Shared/Colours";
 import { Calendar } from "react-native-calendars";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function AppointmentSection({ id }) {
   const data = [
@@ -37,9 +38,15 @@ export default function AppointmentSection({ id }) {
   const [selectedDate, setSelectedDate] = useState("");
 
   const navigation = useNavigation();
+  const [user_id, setUserId] = useState();
 
   useEffect(() => {
+    const getId = async () => {
+      const data = await AsyncStorage.getItem(Constants.userid);
+      setUserId(data);
+    };
     getTime();
+    getId();
   }, []);
 
   const getTime = () => {
@@ -77,7 +84,7 @@ export default function AppointmentSection({ id }) {
         text: "OK",
         onPress: async () => {
           const submitData = {
-            userId: "658175448f01a9320778ae51",
+            userId: user_id,
             appt: {
               serviceType: serviceType,
               date: selectedDate,

@@ -47,12 +47,33 @@ module.exports = {
         })
         .select("appointments hospital -_id");
 
-      console.log(appts);
+      // console.log(appts);
 
       res.status(200).json(appts);
     } catch (error) {
       console.log(error);
       res.status(500).json("fail to retrieve");
+    }
+  },
+
+  // user id
+  deleteApptById: async (req, res) => {
+    try {
+      const { userId, apptId } = req.body;
+
+      // console.log(user);
+      const user = await User.findById(userId);
+      await Appointment.findByIdAndDelete(apptId);
+      // console.log(userId, apptId);
+      user.appointments = user.appointments.filter(
+        (appt) => !appt.equals(apptId)
+      );
+      await user.save();
+
+      res.status(200).json("deleted successfully!");
+    } catch (error) {
+      console.log(error);
+      res.status(500).json("fail to delete");
     }
   },
 };

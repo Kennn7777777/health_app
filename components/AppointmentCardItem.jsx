@@ -1,11 +1,22 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Modal,
+  Alert,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import AppointmentInfo from "./AppointmentInfo";
 import HeightSpacer from "./general/HeightSpacer";
 import moment from "moment";
 import Colours from "../Shared/Colours";
+import axios from "axios";
+import Constants from "../Shared/Constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function AppointmentCardItem({
   healthcare,
@@ -13,6 +24,40 @@ export default function AppointmentCardItem({
 }) {
   const hospital = healthcare?.hospital;
   // const { name } = hospital;
+  const [user_id, setUserId] = useState();
+
+  useEffect(() => {
+    const getId = async () => {
+      const data = await AsyncStorage.getItem(Constants.userid);
+      setUserId(data);
+    };
+    getId();
+  }, []);
+
+  const handleCancel = () => {
+    Alert.alert("Confirm", "Are you sure?", [
+      { text: "Cancel", onPress: () => {} },
+      {
+        text: "Ok",
+        onPress: async () => {
+          const submitData = {
+            userId: user_id,
+            apptId: healthcare._id,
+          };
+          console.log(submitData);
+          try {
+            await axios.delete(`${Constants.url}/api/appointments/delete`, {
+              data: submitData,
+            });
+            Alert.alert("Success", "Deleted booking successfully!");
+          } catch (error) {
+            console.log(error);
+            Alert.alert("Error cancelling");
+          }
+        },
+      },
+    ]);
+  };
 
   return (
     <View style={styles.container}>
@@ -87,7 +132,7 @@ export default function AppointmentCardItem({
       {enableButtons && (
         <View style={styles.addBtns}>
           <View style={styles.btn}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={handleCancel}>
               <Text>Cancel</Text>
             </TouchableOpacity>
           </View>

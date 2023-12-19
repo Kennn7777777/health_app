@@ -38,7 +38,7 @@ module.exports = {
         return res.status(401).json("invalid password");
       }
       console.log("login");
-      res.status(200).json("login successfully");
+      res.status(200).json({ userId: user._id });
     } catch (error) {
       res.status(500).json("login failed");
     }
