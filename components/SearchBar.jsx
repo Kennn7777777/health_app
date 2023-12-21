@@ -8,32 +8,17 @@ import {
 } from "@expo/vector-icons";
 import { TextInput } from "react-native-gesture-handler";
 import Colours from "../Shared/Colours";
+import SearchHealthcare from "../screens/SearchHealthcare";
 
 export default function SearchBar({
   isClassic,
   SetIsClassic,
   isFilterOpen,
   SetIsFilterOpen,
+  searchHealthcare,
 }) {
-  // const [isClassic, SetIsClassic] = useState(true);
-
   return (
     <View>
-      {/* <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 5,
-          alignItems: "center",
-          borderWidth: 0.7,
-          borderColor: "#c2c3c4",
-          padding: 8,
-          borderRadius: 8,
-        }}
-      >
-        <Ionicons name="search-outline" size={24} color="black" />
-        <TextInput placeholder="Seach Health Insitution..." />
-      </View> */}
       <View
         style={{
           flexDirection: "row",
@@ -45,7 +30,10 @@ export default function SearchBar({
         <View style={styles.card}>
           <View style={{ flexDirection: "row", gap: 5 }}>
             <Ionicons name="search-outline" size={24} color="black" />
-            <TextInput placeholder="Seach Healthcare institutions..." />
+            <TextInput
+              placeholder="Seach Healthcare institutions..."
+              onChangeText={(text) => searchHealthcare(text)}
+            />
           </View>
         </View>
         <TouchableOpacity onPress={() => SetIsFilterOpen((set) => !set)}>

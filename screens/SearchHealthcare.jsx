@@ -17,7 +17,12 @@ import useFetchHospitals from "../services/useFetchHospitals";
 import Colours from "../Shared/Colours";
 
 export default function SearchHealthcare() {
-  const { data: healthcareList, isLoading, error } = useFetchHospitals();
+  const [filteredList, setFilteredList] = useState([]);
+  const {
+    data: healthcareList,
+    isLoading,
+    error,
+  } = useFetchHospitals({ setFilteredList });
   const [isClassic, SetIsClassic] = useState(true);
   const [isFilterOpen, SetIsFilterOpen] = useState(false);
   const [isChecked, SetIsChecked] = useState({
@@ -30,30 +35,6 @@ export default function SearchHealthcare() {
   const [selected, SetSelected] = useState([]);
   const [selectedService, SetSelectedService] = useState([]);
   const [selectedHealthcare, SetSelectedHealthcare] = useState([]);
-
-  // const healthcareList = [
-  //   {
-  //     id: 1,
-  //     name: "Hospital ABC",
-  //     imageUrl: "https://picsum.photos/300",
-  //     address: "11 Jln Tan Tock Seng, Singapore 308433",
-  //     services: ["Consultation", "Dental", "Vaccination", "xxxxxx"],
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "hospital 123",
-  //     imageUrl: "https://picsum.photos/300",
-  //     address: "11 Jln Tan Tock Seng, Singapore 308433",
-  //     services: ["Consultation", "Dental", "Vaccination"],
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "hospital 123",
-  //     imageUrl: "https://picsum.photos/300",
-  //     address: "11 Jln Tan Tock Seng, Singapore 308433",
-  //     services: ["Consultation", "Dental", "Vaccination"],
-  //   },
-  // ];
 
   const locationList = [
     { label: "All", value: "1" },
@@ -88,6 +69,16 @@ export default function SearchHealthcare() {
     { label: "healthcare 8", value: "8" },
   ];
 
+  const searchHealthcare = (keyword: String) => {
+    const lowerCaseKeyword = keyword.toLowerCase();
+
+    const results = filteredList.filter((healthcare) => {
+      return healthcare.name.toLowerCase().includes(lowerCaseKeyword);
+    });
+
+    keyword === "" ? setFilteredList(healthcareList) : setFilteredList(results);
+  };
+
   return (
     <View style={{ flex: 1, marginHorizontal: 22, marginTop: 20 }}>
       <SearchBar
@@ -95,6 +86,7 @@ export default function SearchHealthcare() {
         SetIsClassic={SetIsClassic}
         isFilterOpen={isFilterOpen}
         SetIsFilterOpen={SetIsFilterOpen}
+        searchHealthcare={searchHealthcare}
       />
       <HeightSpace value={15} />
       {/* <HealthecareListView
@@ -110,7 +102,7 @@ export default function SearchHealthcare() {
         </View>
       ) : (
         <HealthecareListView
-          healthcareList={healthcareList}
+          healthcareList={filteredList}
           isClassic={isClassic}
         />
       )}

@@ -87,7 +87,7 @@ export default function ({ setIsLogin }) {
       </View>
 
       <HeightSpacer value={30} />
-      <TouchableOpacity onPress={handleLogin}>
+      <TouchableOpacity onPressOut={handleLogin}>
         <View style={styles.btn}>
           <Text
             style={{

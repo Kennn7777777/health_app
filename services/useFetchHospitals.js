@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Constants from "../Shared/Constants";
 
-const useFetchHospitals = () => {
+const useFetchHospitals = ({ setFilteredList }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,6 +13,7 @@ const useFetchHospitals = () => {
     try {
       const response = await axios.get(`${Constants.url}/api/hospital`);
       setData(response.data);
+      if (setFilteredList) setFilteredList(response.data);
 
       setIsLoading(false);
     } catch (error) {
