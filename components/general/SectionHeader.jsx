@@ -11,6 +11,7 @@ export default function SectionHeader({
   btnTitle = "View all",
   showNumber = false,
   showView = true,
+  handlePress,
 }) {
   const navigation = useNavigation();
 
@@ -50,7 +51,7 @@ export default function SectionHeader({
         )}
       </View>
       {showView && (
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={handlePress}>
           <Text style={{ fontWeight: "bold", color: Colours.primary }}>
             {btnTitle}
           </Text>

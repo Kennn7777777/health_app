@@ -4,11 +4,11 @@ import SectionHeader from "../components/general/SectionHeader";
 import AppointmentCardItem from "../components/AppointmentCardItem";
 import HeightSpacer from "../components/general/HeightSpacer";
 import useFetchAppts from "../services/useFetchAppts";
+import { useNavigation } from "@react-navigation/native";
 
 export default function AppointmentSchedule() {
-  // const [data, setData] = useState([]);
-
   const { data, isLoading, error, refetch } = useFetchAppts();
+  const navigation = useNavigation();
 
   // const singleAppt =
   //   data?.appointments.length !== 0 ? data?.appointments[0] : null;
@@ -19,6 +19,10 @@ export default function AppointmentSchedule() {
   //   address: "11 Jln Tan Tock Seng, Singapore 308433",
   // };
 
+  const handlePress = () => {
+    navigation.navigate("Appointment");
+  };
+
   return (
     <View style={{ marginTop: 20 }}>
       {data?.length > 0 ? (
@@ -26,6 +30,7 @@ export default function AppointmentSchedule() {
           title="Upcoming appointments"
           showNumber={true}
           number={data?.length}
+          handlePress={handlePress}
         />
       ) : (
         <SectionHeader title="Upcoming appointments" showNumber={false} />

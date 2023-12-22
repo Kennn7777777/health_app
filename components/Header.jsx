@@ -15,7 +15,7 @@ export default function Header() {
       >
         <View>
           <Text style={{ fontSize: 24, fontWeight: "bold" }}>Welcome</Text>
-          <Text>Name</Text>
+          <Text>John Doe</Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
           <Ionicons name="notifications-outline" size={24} />
