@@ -1,12 +1,31 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
+import Colours from "../Shared/Colours";
 
-const History = () => {
+export default function History() {
   return (
-    <View>
-      <Text>History</Text>
+    <View style={styles.root}>
+      <View style={styles.container}>
+        <Text style={styles.text}>No past history ...</Text>
+      </View>
     </View>
   );
-};
+}
 
-export default History;
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: Colours.background,
+  },
+  container: {
+    flex: 1,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    fontSize: 16,
+    fontFamily: "Inter-Regular",
+    color: Colours.text2,
+  },
+});

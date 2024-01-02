@@ -94,6 +94,9 @@ export default function TabNavigation() {
           tabBarLabel: "Health Profiles",
           headerTitle: "Health Profiles",
           headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: Colours.background,
+          },
         }}
       />
     </Tab.Navigator>

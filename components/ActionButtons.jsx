@@ -1,4 +1,10 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import React from "react";
 import {
   Ionicons,
@@ -58,13 +64,22 @@ export default function ActionButtons() {
                 alignItems: "center",
               }}
             >
-              {/* <Ionicons name={item.icon} size={23} color="#000" /> */}
               {item.icon}
             </View>
-            <Text style={{ marginTop: 5 }}>{item.name}</Text>
+            <Text style={styles.name({ size: 12 })}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  name: ({ size }) => ({
+    fontSize: size,
+    fontFamily: "Inter-Regular",
+    lineHeight: size * 1.5,
+    color: Colours.black,
+    marginTop: 2,
+  }),
+});

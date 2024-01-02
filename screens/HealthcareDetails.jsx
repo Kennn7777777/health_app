@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
+  StyleSheet,
 } from "react-native";
 import React, { useState } from "react";
 import { useRoute } from "@react-navigation/native";
@@ -25,23 +26,20 @@ export default function HealthcareDetails({ navigation }) {
           height: Dimensions.get("screen").height * 0.28,
         }}
       />
-
       <View
         style={{
           marginTop: -20,
-          backgroundColor: "#ffff",
+          backgroundColor: Colours.white,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           padding: 20,
         }}
       >
         <HealthcareInfo healthcare={healthcare} />
+        <SectionHeader title="About" showView={false} />
       </View>
-      <ScrollView>
-        <View style={{ marginHorizontal: 22, marginTop: -20 }}>
-          <SectionHeader title="About" showView={false} />
-          <Text style={{ marginTop: 10 }}>{healthcare.info}</Text>
-        </View>
+      <ScrollView style={{ backgroundColor: "white", marginTop: -16 }}>
+        <Text style={{ paddingHorizontal: 20 }}>{healthcare.info}</Text>
       </ScrollView>
       <TouchableOpacity
         onPress={() =>
@@ -50,19 +48,27 @@ export default function HealthcareDetails({ navigation }) {
           })
         }
         style={{
-          padding: 13,
+          padding: 10,
           backgroundColor: Colours.primary,
-          margin: 10,
+          marginHorizontal: 20,
+          marginBottom: 5,
           borderRadius: 10,
           left: 0,
           right: 0,
           zIndex: 20,
         }}
       >
-        <Text style={{ textAlign: "center", color: "#fff" }}>
-          Book Appointment
-        </Text>
+        <Text style={styles.aptText}>Book Appointment</Text>
       </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  aptText: {
+    fontSize: 16,
+    fontFamily: "Inter-Bold",
+    color: Colours.white,
+    textAlign: "center",
+  },
+});

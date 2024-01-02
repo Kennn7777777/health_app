@@ -12,11 +12,9 @@ export default function InstitutionCardItem({ healthcare, isClassic }) {
   const truncatedText =
     text.length > maxWords ? text.slice(0, maxWords) + " ..." : text;
 
-  console.log(healthcare.imageUrl);
-
   return (
     <View>
-      {/* {isClassic || (
+      {isClassic || (
         <Image
           source={{ uri: healthcare.imageUrl[0] }}
           resizeMode="stretch"
@@ -27,7 +25,7 @@ export default function InstitutionCardItem({ healthcare, isClassic }) {
             borderTopRightRadius: 10,
           }}
         />
-      )} */}
+      )}
 
       <View
         style={[

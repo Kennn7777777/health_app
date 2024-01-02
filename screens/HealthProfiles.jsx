@@ -2,83 +2,90 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import SectionHeader from "../components/general/SectionHeader";
 import HeightSpacer from "../components/general/HeightSpacer";
+import Colours from "../Shared/Colours";
 
 export default function HealthProfiles() {
   return (
-    <View style={{ flex: 1, marginHorizontal: 22, marginTop: 20 }}>
-      <SectionHeader title="My health profile" showView={false} />
-      <HeightSpacer value={10} />
-      <View style={styles.container}>
-        <View style={{ paddingLeft: 10, paddingBottom: 30 }}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>John Doe </Text>
+    <View style={styles.root}>
+      <View style={{ flex: 1, marginHorizontal: 22, marginTop: 20 }}>
+        <SectionHeader title="My health profile" showView={false} />
+        <HeightSpacer value={10} />
+        <View style={styles.container}>
+          <View style={{ paddingLeft: 10, paddingBottom: 30 }}>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>John Doe </Text>
 
-          <View style={{ marginTop: 14 }}>
-            <View style={{ flexDirection: "row", gap: 90 }}>
-              <Text style={styles.small}>Gender: Male</Text>
-              <Text style={styles.small}>D.O.B: 20/11/1955</Text>
+            <View style={{ marginTop: 14 }}>
+              <View style={{ flexDirection: "row", gap: 90 }}>
+                <Text style={styles.small}>Gender: Male</Text>
+                <Text style={styles.small}>D.O.B: 20/11/1955</Text>
+              </View>
+              <View style={{ flexDirection: "row", gap: 90 }}>
+                <Text style={styles.small}>Weight: 70 kg</Text>
+                <Text style={styles.small}>Height: 188 cm</Text>
+              </View>
+              <Text style={styles.small}>Blood Group: A</Text>
             </View>
-            <View style={{ flexDirection: "row", gap: 90 }}>
-              <Text style={styles.small}>Weight: 70 kg</Text>
-              <Text style={styles.small}>Height: 188 cm</Text>
-            </View>
-            <Text style={styles.small}>Blood Group: A</Text>
-          </View>
 
-          <View style={{ position: "absolute", bottom: 0, right: 0 }}>
-            <TouchableOpacity>
-              <Text>Edit Profile &gt;</Text>
-            </TouchableOpacity>
+            <View style={{ position: "absolute", bottom: 0, right: 0 }}>
+              <TouchableOpacity>
+                <Text>Edit Profile &gt;</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
-      <HeightSpacer value={10} />
+        <HeightSpacer value={10} />
 
-      <SectionHeader title="People under my care" btnTitle="Add new" />
-      <HeightSpacer value={10} />
+        <SectionHeader title="People under my care" btnTitle="Add new" />
+        <HeightSpacer value={10} />
 
-      <View style={{ gap: 10 }}>
+        <View style={{ gap: 10 }}>
+          <View style={styles.container}>
+            <View
+              style={{ flexDirection: "row", gap: 90, alignItems: "center" }}
+            >
+              <View style={{ flex: 1 }}>
+                <Text style={styles.fontb}>Paul</Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 16 }}>Son</Text>
+              </View>
+              <View style={{ position: "absolute", right: 0 }}>
+                <Text style={styles.arrow}>&gt;</Text>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.container}>
+            <View
+              style={{ flexDirection: "row", gap: 90, alignItems: "center" }}
+            >
+              <View style={{ flex: 1 }}>
+                <Text style={styles.fontb}>Peter</Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 16 }}>Son</Text>
+              </View>
+              <View style={{ position: "absolute", right: 0 }}>
+                <Text style={styles.arrow}>&gt;</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <HeightSpacer value={10} />
+        <SectionHeader title="My caregivers" btnTitle="Add new" />
+        <HeightSpacer value={10} />
         <View style={styles.container}>
           <View style={{ flexDirection: "row", gap: 90, alignItems: "center" }}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.fontb}>Paul</Text>
+              <Text style={styles.fontb}>Dr. Jack</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 16 }}>Son</Text>
+              <Text style={{ fontSize: 16 }}>Doctor</Text>
             </View>
             <View style={{ position: "absolute", right: 0 }}>
               <Text style={styles.arrow}>&gt;</Text>
             </View>
-          </View>
-        </View>
-
-        <View style={styles.container}>
-          <View style={{ flexDirection: "row", gap: 90, alignItems: "center" }}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.fontb}>Thamos two</Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 16 }}>Son</Text>
-            </View>
-            <View style={{ position: "absolute", right: 0 }}>
-              <Text style={styles.arrow}>&gt;</Text>
-            </View>
-          </View>
-        </View>
-      </View>
-
-      <HeightSpacer value={10} />
-      <SectionHeader title="My caregivers" btnTitle="Add new" />
-      <HeightSpacer value={10} />
-      <View style={styles.container}>
-        <View style={{ flexDirection: "row", gap: 90, alignItems: "center" }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.fontb}>Dr. Jack</Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Doctor</Text>
-          </View>
-          <View style={{ position: "absolute", right: 0 }}>
-            <Text style={styles.arrow}>&gt;</Text>
           </View>
         </View>
       </View>
@@ -87,10 +94,15 @@ export default function HealthProfiles() {
 }
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: Colours.background,
+  },
   container: {
     // margin: 16,
     // height: 160,
-    backgroundColor: "white",
+
+    backgroundColor: Colours.white,
     borderRadius: 8,
     padding: 12,
     shadowColor: "#000",

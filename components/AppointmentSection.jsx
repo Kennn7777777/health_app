@@ -23,11 +23,6 @@ export default function AppointmentSection({ id }) {
     { label: "Consultation", value: "1" },
     { label: "Medical checkup", value: "2" },
     { label: "Vaccination", value: "3" },
-    { label: "Service 4", value: "4" },
-    { label: "Service 5", value: "5" },
-    { label: "Service 6", value: "6" },
-    { label: "Service 7", value: "7" },
-    { label: "Service 8", value: "8" },
   ];
 
   const [serviceType, setServiceType] = useState("");
@@ -114,7 +109,7 @@ export default function AppointmentSection({ id }) {
     <View>
       <View>
         <View style={{ marginBottom: 15 }}>
-          <Text style={{ fontSize: 18 }}>Service Type</Text>
+          <Text style={styles.title}>Service types</Text>
         </View>
         <Dropdown
           style={styles.dropdown}
@@ -136,7 +131,7 @@ export default function AppointmentSection({ id }) {
         {/* Date */}
         <View style={{ marginTop: 15 }}>
           <View style={{ marginBottom: 15 }}>
-            <Text style={{ fontSize: 18 }}>Date</Text>
+            <Text style={styles.title}>Date</Text>
           </View>
           <View
             style={{
@@ -145,7 +140,7 @@ export default function AppointmentSection({ id }) {
           >
             <View style={styles.dropdown} />
 
-            <Text
+            {/* <Text
               style={{
                 position: "absolute",
                 fontSize: 16,
@@ -153,6 +148,12 @@ export default function AppointmentSection({ id }) {
                 padding: 10,
                 color: Colours.gray,
               }}
+            > */}
+            <Text
+              style={[
+                styles.placeholderStyle,
+                { position: "absolute", fontSize: 16, left: 0, padding: 10 },
+              ]}
             >
               {selectedDate ? selectedDate : `Select an appointment date...`}
             </Text>
@@ -168,7 +169,7 @@ export default function AppointmentSection({ id }) {
         {/* Available Time slot */}
         <View style={{ marginTop: 15 }}>
           <View style={{ marginBottom: 15 }}>
-            <Text style={{ fontSize: 18 }}>Available Timeslots</Text>
+            <Text style={styles.title}>Available Timeslots</Text>
           </View>
 
           <FlatList
@@ -186,7 +187,12 @@ export default function AppointmentSection({ id }) {
                 onPress={() => setSelectedTime(item.time)}
               >
                 <Text
-                  style={selectedTime === item.time ? { color: "#fff" } : null}
+                  style={[
+                    styles.timeText,
+                    selectedTime === item.time
+                      ? { color: Colours.white }
+                      : { color: Colours.text2 },
+                  ]}
                 >
                   {item.time}
                 </Text>
@@ -198,20 +204,24 @@ export default function AppointmentSection({ id }) {
         {/* Note */}
         <View style={{ marginTop: 15 }}>
           <View style={{ marginBottom: 15 }}>
-            <Text style={{ fontSize: 18 }}>Note</Text>
+            <Text style={styles.title}>Note</Text>
           </View>
           <TextInput
             numberOfLines={3}
             style={{
-              backgroundColor: Colours.lgray,
+              backgroundColor: Colours.note,
               borderRadius: 8,
-              borderColor: Colours.lgray,
+              borderColor: Colours.note,
               borderWidth: 1,
               textAlignVertical: "top",
-              padding: 10,
-              paddingVertical: 20,
+              padding: 20,
+              paddingTop: 20,
+              paddingBottom: 50,
+              fontSize: 16,
+              ...styles.placeholderStyle,
             }}
             placeholder="Write a note here..."
+            // placeholderStyle={styles.placeholderStyle}
             onChangeText={handleTextChange}
           />
         </View>
@@ -229,11 +239,7 @@ export default function AppointmentSection({ id }) {
             zIndex: 20,
           }}
         >
-          <Text
-            style={{ textAlign: "center", color: "#fff", fontWeight: "bold" }}
-          >
-            Confirm Appointment
-          </Text>
+          <Text style={styles.aptText}>Confirm Appointment</Text>
         </TouchableOpacity>
 
         <Modal
@@ -255,6 +261,11 @@ export default function AppointmentSection({ id }) {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 18,
+    fontFamily: "Inter-Bold",
+    color: Colours.text2,
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -263,14 +274,19 @@ const styles = StyleSheet.create({
     // marginTop: 22,
   },
   timeBtn: {
-    borderWidth: 1,
-    borderRadius: 99,
+    // borderWidth: 1,
+    borderRadius: 7,
     padding: 5,
     paddingVertical: 14,
     paddingHorizontal: 20,
     alignItems: "center",
     marginRight: 10,
-    borderColor: "#131313",
+    backgroundColor: Colours.white,
+    // borderColor: "#131313",
+  },
+  timeText: {
+    fontFamily: "Inter-Regular",
+    lineHeight: 15,
   },
   container: {
     backgroundColor: "white",
@@ -294,9 +310,16 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 16,
-    color: Colours.gray,
+    fontFamily: "Inter-Regular",
+    color: Colours.sub,
   },
   selectedTextStyle: {
     fontSize: 16,
+  },
+  aptText: {
+    fontSize: 16,
+    fontFamily: "Inter-Bold",
+    color: Colours.white,
+    textAlign: "center",
   },
 });

@@ -1,19 +1,37 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { useRoute } from "@react-navigation/native";
 import AppointmentInfo from "../components/AppointmentInfo";
-import HLine from "../components/general/HLine";
+import WLine from "../components/general/WLine";
 import AppointmentSection from "../components/AppointmentSection";
+import Colours from "../Shared/Colours";
+import HeightSpacer from "../components/general/HeightSpacer";
 
 export default function BookAppointment() {
   const { healthcare } = useRoute().params;
 
   return (
-    <View style={{ padding: 20, backgroundColor: "#ffffff" }}>
-      <AppointmentInfo hospital={healthcare} />
-      <HLine />
-
-      <AppointmentSection id={healthcare._id} />
+    <View style={styles.root}>
+      {/* <View style={{ padding: 20, backgroundColor: Colours.background }}> */}
+      <View style={styles.container}>
+        <AppointmentInfo hospital={healthcare} />
+        <HeightSpacer value={5} />
+        <WLine />
+        <HeightSpacer value={10} />
+        <AppointmentSection id={healthcare._id} />
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: Colours.background,
+  },
+  container: {
+    flex: 1,
+    marginHorizontal: 20,
+    marginTop: 20,
+  },
+});

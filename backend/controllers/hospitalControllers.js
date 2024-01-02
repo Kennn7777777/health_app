@@ -5,7 +5,7 @@ module.exports = {
   // new all hospitals
   getHospitals: async (req, res) => {
     try {
-      const hospitals = await Hospital.find().sort({ createdAt: -1 });
+      const hospitals = await Hospital.find().sort({ name: 1 });
       res.status(200).json(hospitals);
     } catch (error) {
       res.status(500).json("fail to retrieve");
