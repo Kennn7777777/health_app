@@ -6,11 +6,25 @@ import TabNavigation from "./navigations/TabNavigation";
 import Login from "./screens/Login";
 import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import Colours from "./Shared/Colours";
+import { useFonts } from "expo-font";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+
+  let [fontsLoaded] = useFonts({
+    "Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
+    "Inter-Medium": require("./assets/fonts/Inter-Medium.ttf"),
+    "Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
+    "Inter-SemiBold": require("./assets/fonts/Inter-SemiBold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       {isLogin ? (
@@ -21,14 +35,7 @@ export default function App() {
               component={TabNavigation}
               options={{ headerShown: false }}
             />
-
-            {/* <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{ headerShown: false }}
-          /> */}
           </Stack.Navigator>
-          {/* <TabNavigation /> */}
         </NavigationContainer>
       ) : (
         <Login setIsLogin={setIsLogin} />
@@ -40,6 +47,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colours.background,
   },
 });

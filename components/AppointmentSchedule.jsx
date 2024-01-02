@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import SectionHeader from "../components/general/SectionHeader";
 import AppointmentCardItem from "../components/AppointmentCardItem";
@@ -27,20 +27,24 @@ export default function AppointmentSchedule() {
     <View style={{ marginTop: 20 }}>
       {data?.length > 0 ? (
         <SectionHeader
-          title="Upcoming appointments"
+          title="Upcoming Appointments"
           showNumber={true}
           number={data?.length}
           handlePress={handlePress}
         />
       ) : (
-        <SectionHeader title="Upcoming appointments" showNumber={false} />
+        <SectionHeader title="Upcoming Appointments" showNumber={false} />
       )}
       <HeightSpacer value={10} />
       {data?.length > 0 ? (
         <AppointmentCardItem healthcare={data[0]} />
       ) : (
-        <Text>Nothing here...</Text>
+        <Text style={styles.text}>Nothing here...</Text>
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  text: {},
+});

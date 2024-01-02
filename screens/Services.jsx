@@ -9,23 +9,25 @@ import {
   FontAwesome5,
   FontAwesome,
 } from "@expo/vector-icons";
+import Colours from "../Shared/Colours";
 
 export default function Services() {
+  const size = 24;
   const serviceList = [
     {
       id: 1,
       name: "Hospitals",
-      icon: <FontAwesome5 name="hospital-alt" size={24} color="black" />,
+      icon: <FontAwesome5 name="hospital-alt" size={size} color="black" />,
     },
     {
       id: 2,
       name: "Lab results",
-      icon: <Fontisto name="blood-test" size={24} color="black" />,
+      icon: <Fontisto name="blood-test" size={size} color="black" />,
     },
     {
       id: 3,
       name: "Medication reminder",
-      icon: <MaterialCommunityIcons name="reminder" size={24} color="black" />,
+      icon: <FontAwesome5 name="pills" size={size} color="black" />,
     },
     {
       id: 4,
@@ -35,12 +37,12 @@ export default function Services() {
     {
       id: 5,
       name: "Fitness Programmes",
-      icon: <Ionicons name="md-fitness" size={24} color="black" />,
+      icon: <Ionicons name="md-fitness" size={size} color="black" />,
     },
     {
       id: 6,
       name: "Payments",
-      icon: <MaterialIcons name="payment" size={24} color="black" />,
+      icon: <MaterialIcons name="payment" size={size} color="black" />,
     },
     {
       id: 7,
@@ -50,20 +52,28 @@ export default function Services() {
     {
       id: 8,
       name: "Admission & discharge",
-      icon: <FontAwesome5 name="hospital-user" size={24} color="black" />,
+      icon: <FontAwesome5 name="hospital-user" size={size} color="black" />,
     },
   ];
   return (
-    <View style={{ flex: 1, marginHorizontal: 22, marginTop: 20 }}>
-      <FlatList
-        marginTop={10}
-        data={serviceList}
-        numColumns={2}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => {
-          return <IconButon height={140} text={item.name} icon={item.icon} />;
+    <View style={{ flex: 1, backgroundColor: Colours.background }}>
+      <View
+        style={{
+          flex: 1,
+          marginHorizontal: 22,
+          marginTop: 20,
         }}
-      />
+      >
+        <FlatList
+          marginTop={10}
+          data={serviceList}
+          numColumns={2}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => {
+            return <IconButon height={140} text={item.name} icon={item.icon} />;
+          }}
+        />
+      </View>
     </View>
   );
 }

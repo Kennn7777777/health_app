@@ -1,7 +1,20 @@
 export default {
-  primary: "#0066fb",
-  secondary: "#dbe8f9",
+  // primary: "#0066fb",
+  // secondary: "#dbe8f9",
   darkblue: "#0356cd",
   gray: "#8e8e8e",
   lgray: "#d3d3d3",
+
+  primary: "#18A0FB",
+  secondary: "rgba(24, 160, 251, 0.08)",
+  background: "#F9F9F9",
+  text_main: "#1F2A37",
+  sub: "#979797",
+  text: "#6B7280",
+  text2: "#4B5563",
+  white: "#FFFFFF",
+  black: "#000",
+  icon: "#9CA3AF",
+  btn: "#E5E7EB",
+  note: "#F3F4F6",
 };

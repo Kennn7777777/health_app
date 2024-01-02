@@ -12,6 +12,7 @@ import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import AppointmentInfo from "./AppointmentInfo";
 import HeightSpacer from "./general/HeightSpacer";
+import WLine from "./general/WLine";
 import moment from "moment";
 import Colours from "../Shared/Colours";
 import axios from "axios";
@@ -61,22 +62,39 @@ export default function AppointmentCardItem({
 
   return (
     <View style={styles.container}>
-      <View style={{ marginLeft: 10 }}>
-        <View>
-          <AppointmentInfo
-            hospital={hospital}
-            imageSize={60}
-            headingSize={16}
-            locationSize={14}
-          />
-        </View>
-        <HeightSpacer value={10} />
-        <View style={{ flexDirection: "row", gap: 100 }}>
-          <Text>{healthcare?.serviceType}</Text>
-        </View>
+      <View>
+        <AppointmentInfo
+          hospital={hospital}
+          imageSize={60}
+          headingSize={16}
+          locationSize={14}
+        />
+
+        <HeightSpacer value={5} />
+
+        <Text style={styles.serviceType({ size: 14 })}>
+          {healthcare?.serviceType}
+        </Text>
+
+        <HeightSpacer value={5} />
       </View>
 
-      <View
+      <WLine />
+
+      <HeightSpacer value={5} />
+
+      <View style={styles.datetime}>
+        <Text style={styles.datetext({ size: 14 })}>
+          {moment(healthcare?.date).format("ddd, DD MMMM YYYY")} -{" "}
+          {healthcare?.timeslot}
+        </Text>
+      </View>
+
+      {/* <View style={{ flexDirection: "row", gap: 100 }}>
+          <Text>{healthcare?.serviceType}</Text>
+        </View> */}
+
+      {/* <View
         style={{
           borderRadius: 99,
           borderWidth: 1,
@@ -92,8 +110,8 @@ export default function AppointmentCardItem({
         }}
       >
         <FontAwesome name="phone" size={24} color={Colours.secondary} />
-      </View>
-      <View style={styles.datetime}>
+      </View> */}
+      {/* <View style={styles.datetime}>
         <View
           style={{
             flex: 1,
@@ -111,7 +129,7 @@ export default function AppointmentCardItem({
             }}
           >
             <FontAwesome5 name="calendar-alt" size={14} color="black" />
-            {/* <Text>Mon, 12 December, 2024</Text> */}
+            <Text>Mon, 12 December, 2024</Text>
             <Text>{moment(healthcare?.date).format("ddd, DD MMMM YYYY")}</Text>
           </View>
 
@@ -127,18 +145,22 @@ export default function AppointmentCardItem({
             <Text>{healthcare?.timeslot}</Text>
           </View>
         </View>
-      </View>
+      </View> */}
 
       {enableButtons && (
         <View style={styles.addBtns}>
-          <View style={styles.btn}>
+          <View style={styles.btn({ color: Colours.btn })}>
             <TouchableOpacity onPress={handleCancel}>
-              <Text>Cancel</Text>
+              <Text style={styles.btnText({ size: 14, color: Colours.black })}>
+                Cancel
+              </Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.btn}>
+          <View style={styles.btn({ color: Colours.primary })}>
             <TouchableOpacity onPress={() => {}}>
-              <Text>Reschedule</Text>
+              <Text style={styles.btnText({ size: 14, color: Colours.white })}>
+                Reschedule
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -151,9 +173,10 @@ const styles = StyleSheet.create({
   container: {
     // margin: 16,
     // height: 160,
-    backgroundColor: "white",
-    borderRadius: 8,
-    padding: 12,
+    backgroundColor: Colours.white,
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -165,57 +188,86 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   datetime: {
-    // margin: 16,
-    height: 40,
-    width: "95%",
-    backgroundColor: "white",
-    borderRadius: 8,
-    //padding: 12,
-    paddingHorizontal: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
-    // bottom: 10,
-    // flex: 1,
-    // flexDirection: "row",
-    // justifyContent: "space-between",
-    // alignItems: "center",
-    alignSelf: "center",
-    marginTop: 10,
-    // position: "absolute",
+    backgroundColor: Colours.secondary,
+    borderRadius: 6,
+    alignContent: "center",
+    alignItems: "center",
   },
-  btn: {
+  datetext: ({ size }) => ({
+    fontSize: size,
+    fontFamily: "Inter-Medium",
+    lineHeight: size * 1.5,
+    color: Colours.primary,
+    paddingVertical: 5,
+  }),
+  // datetime: {
+  //   // margin: 16,
+  //   height: 40,
+  //   width: "95%",
+  //   backgroundColor: "white",
+  //   borderRadius: 8,
+  //   //padding: 12,
+  //   paddingHorizontal: 20,
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 1,
+  //   },
+  //   shadowOpacity: 0.2,
+  //   shadowRadius: 1.41,
+  //   elevation: 2,
+  //   // bottom: 10,
+  //   // flex: 1,
+  //   // flexDirection: "row",
+  //   // justifyContent: "space-between",
+  //   // alignItems: "center",
+  //   alignSelf: "center",
+  //   marginTop: 10,
+  //   // position: "absolute",
+  // },
+  btnText: ({ size, color }) => ({
+    fontSize: size,
+    fontFamily: "Inter-Bold",
+    lineHeight: size * 1.5,
+    color: color,
+  }),
+  btn: ({ color }) => ({
     flex: 1,
     // borderWidth: 1,
     alignItems: "center",
     backgroundColor: "white",
-    padding: 5,
+    // padding: 5,
+    paddingVertical: 6,
     borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
-  },
+    backgroundColor: color,
+
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 1,
+    // },
+    // shadowOpacity: 0.2,
+    // shadowRadius: 1.41,
+    // elevation: 2,
+  }),
   addBtns: {
     alignSelf: "center",
     flexDirection: "row",
-    gap: 10,
+    // gap: 10,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     marginTop: 10,
+    gap: 10,
     // padding: 10,
     // bottom: 10,
     // position: "absolute",
     // position: "absolute",
   },
+  serviceType: ({ size }) => ({
+    fontSize: size,
+    fontFamily: "Inter-Regular",
+    lineHeight: size * 1.5,
+    color: Colours.sub,
+  }),
 });

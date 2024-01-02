@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import Colours from "../../Shared/Colours";
@@ -33,7 +33,7 @@ export default function SectionHeader({
           gap: 10,
         }}
       >
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{title}</Text>
+        <Text style={styles.title({ size: 16 })}>{title}</Text>
         {showNumber && (
           <View
             style={{
@@ -44,19 +44,36 @@ export default function SectionHeader({
               alignItems: "center",
             }}
           >
-            <Text style={{ fontSize: 14, color: "#fff", fontWeight: "bold" }}>
-              {number}
-            </Text>
+            <Text style={styles.number({ size: 12 })}>{number}</Text>
           </View>
         )}
       </View>
       {showView && (
         <TouchableOpacity onPress={handlePress}>
-          <Text style={{ fontWeight: "bold", color: Colours.primary }}>
-            {btnTitle}
-          </Text>
+          <Text style={styles.btnTitle({ size: 14 })}>{btnTitle}</Text>
         </TouchableOpacity>
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  title: ({ size }) => ({
+    fontSize: size,
+    fontFamily: "Inter-Bold",
+    lineHeight: size * 1.5,
+    color: Colours.text_main,
+  }),
+  number: ({ size }) => ({
+    fontSize: size,
+    fontFamily: "Inter-Bold",
+    lineHeight: size * 1.5,
+    color: Colours.white,
+  }),
+  btnTitle: ({ size }) => ({
+    fontSize: size,
+    fontFamily: "Inter-Medium",
+    lineHeight: size * 1.5,
+    color: Colours.text,
+  }),
+});

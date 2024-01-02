@@ -28,7 +28,7 @@ export default function OurServices() {
     {
       id: 3,
       name: "Medication reminder",
-      icon: <MaterialCommunityIcons name="reminder" size={24} color="black" />,
+      icon: <FontAwesome5 name="pills" size={24} color="black" />,
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ export default function OurServices() {
   ];
 
   return (
-    <View style={{ marginTop: 10 }}>
+    <View style={{ marginTop: 20 }}>
       {/* <View
         style={{
           display: "flex",
@@ -65,7 +65,7 @@ export default function OurServices() {
       <SectionHeader title="Our Services" />
 
       <FlatList
-        marginTop={10}
+        marginTop={5}
         data={serviceList}
         numColumns={3}
         keyExtractor={(item) => item.id}

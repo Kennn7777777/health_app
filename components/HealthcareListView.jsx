@@ -11,6 +11,7 @@ export default function HealthecarelListView({ healthcareList, isClassic }) {
     // flex here so that there is a "size" for it to be scrollable
     <View style={{ flex: 1 }}>
       <FlatList
+        contentContainerStyle={{ paddingVertical: 10 }}
         showsVerticalScrollIndicator={false}
         data={healthcareList}
         keyExtractor={(item) => item._id}

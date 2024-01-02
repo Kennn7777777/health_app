@@ -1,22 +1,32 @@
 import React from "react";
-import { Text, View, ScrollView } from "react-native";
+import { Text, View, ScrollView, StyleSheet } from "react-native";
 import Header from "../components/Header";
 import Slider from "../components/Slider";
 import ServiceOptions from "../components/ServiceOptions";
 import AppointmentSchedule from "../components/AppointmentSchedule";
+import Colours from "../Shared/Colours";
 
-const Home = () => {
+export default function Home() {
   return (
-    <View style={{ flex: 1, marginHorizontal: 22, marginTop: 20 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <View style={styles.root}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <Header />
         <Slider />
         <AppointmentSchedule />
-
         <ServiceOptions />
       </ScrollView>
     </View>
   );
-};
+}
 
-export default Home;
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: Colours.background,
+  },
+  container: {
+    flex: 1,
+    marginHorizontal: 16.5,
+    marginTop: 44,
+  },
+});
