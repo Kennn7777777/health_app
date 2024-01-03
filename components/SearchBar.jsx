@@ -13,8 +13,9 @@ import SearchHealthcare from "../screens/SearchHealthcare";
 export default function SearchBar({
   isClassic,
   SetIsClassic,
-  isFilterOpen,
-  SetIsFilterOpen,
+  // isFilterOpen,
+  // SetIsFilterOpen,
+  handleOpenPress,
   searchHealthcare,
 }) {
   return (
@@ -45,7 +46,7 @@ export default function SearchBar({
         </View>
 
         <View style={{ flexDirection: "row", gap: 5, marginRight: 10 }}>
-          <TouchableOpacity onPress={() => SetIsFilterOpen((set) => !set)}>
+          <TouchableOpacity onPress={handleOpenPress}>
             <View style={styles.btn}>
               <FontAwesome name="filter" size={24} color={Colours.white} />
             </View>

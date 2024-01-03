@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 import Constants from "../Shared/Constants";
 import { useNavigation } from "@react-navigation/native";
@@ -32,7 +32,7 @@ const useFetchAppts = (userId) => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const unsubscribeFocus = navigation.addListener("focus", () => {
       fetchAppts();
     });

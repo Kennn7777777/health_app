@@ -34,6 +34,7 @@ export default function InstitutionCardItem({ healthcare, isClassic }) {
             backgroundColor: Colours.white,
             borderBottomLeftRadius: 8,
             borderBottomRightRadius: 8,
+            backgroundColor: Colours.white,
           },
           isClassic
             ? { borderTopLeftRadius: 8, borderTopRightRadius: 8 }

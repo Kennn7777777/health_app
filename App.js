@@ -8,6 +8,8 @@ import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Colours from "./Shared/Colours";
 import { useFonts } from "expo-font";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
 
@@ -28,15 +30,19 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       {isLogin ? (
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Tab"
-              component={TabNavigation}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen
+                  name="Tab"
+                  component={TabNavigation}
+                  options={{ headerShown: false }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
       ) : (
         <Login setIsLogin={setIsLogin} />
       )}

@@ -61,35 +61,8 @@ function Appointment({ navigation }) {
   return (
     <View style={styles.root}>
       <View style={styles.container}>
-        {/* <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-around",
-        }}
-      >
-        <TouchableOpacity
-          onPress={() => {
-            SetIsActiveTab(0);
-          }}
-        >
-          <Text style={activeTab === 0 ? styles.active : styles.inactive}>
-            Upcoming
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => SetIsActiveTab(1)}>
-          <Text style={activeTab === 1 ? styles.active : styles.inactive}>
-            History
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <HeightSpacer value={10} /> */}
-
-        {/* List of healthcare insitutions */}
+        {/* List of appointments */}
         <FlatList
-          // style={{ backgroundColor: "pink" }}
           contentContainerStyle={{ paddingVertical: 10 }}
           showsVerticalScrollIndicator={false}
           data={data}
@@ -99,7 +72,6 @@ function Appointment({ navigation }) {
           )}
           ItemSeparatorComponent={<View style={{ height: 10 }} />}
         />
-        {/* <AppointmentCardItem healthcare={healthcare} /> */}
 
         {/* Book New Appointment button */}
         <TouchableOpacity

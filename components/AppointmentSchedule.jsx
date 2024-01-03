@@ -46,5 +46,8 @@ export default function AppointmentSchedule() {
 }
 
 const styles = StyleSheet.create({
-  text: {},
+  text: {
+    fontSize: 14,
+    fontFamily: "Inter-Regular",
+  },
 });

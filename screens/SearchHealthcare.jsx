@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import SearchBar from "../components/SearchBar";
 import HealthecareListView from "../components/HealthcareListView";
 import HeightSpace from "../components/general/HeightSpacer";
@@ -15,8 +15,13 @@ import HLine from "../components/general/HLine";
 import { Dropdown, MultiSelect } from "react-native-element-dropdown";
 import useFetchHospitals from "../services/useFetchHospitals";
 import Colours from "../Shared/Colours";
+import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
+import CustomBottomSheetModal from "../components/general/CustomBottomSheetModal";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function SearchHealthcare() {
+  const { dismiss } = useBottomSheetModal();
+
   const [filteredList, setFilteredList] = useState([]);
   const {
     data: healthcareList,
@@ -24,7 +29,7 @@ export default function SearchHealthcare() {
     error,
   } = useFetchHospitals({ setFilteredList });
   const [isClassic, SetIsClassic] = useState(true);
-  const [isFilterOpen, SetIsFilterOpen] = useState(false);
+  // const [isFilterOpen, SetIsFilterOpen] = useState(false);
   const [isChecked, SetIsChecked] = useState({
     north: false,
     south: false,
@@ -35,6 +40,17 @@ export default function SearchHealthcare() {
   const [selected, SetSelected] = useState([]);
   const [selectedService, SetSelectedService] = useState([]);
   const [selectedHealthcare, SetSelectedHealthcare] = useState([]);
+  const [selectedCat, setSelectedCat] = useState([0, 1]);
+
+  const bottomSheetRef = useRef(null);
+
+  const catList = [
+    "Hospitals",
+    "Polyclinics",
+    "Specialized",
+    "Nursing",
+    "Pharmacies",
+  ];
 
   const locationList = [
     { label: "All", value: "1" },
@@ -69,6 +85,8 @@ export default function SearchHealthcare() {
     { label: "healthcare 8", value: "8" },
   ];
 
+  const handleOpenPress = () => bottomSheetRef.current?.present();
+
   const searchHealthcare = (keyword: String) => {
     const lowerCaseKeyword = keyword.toLowerCase();
 
@@ -79,14 +97,183 @@ export default function SearchHealthcare() {
     keyword === "" ? setFilteredList(healthcareList) : setFilteredList(results);
   };
 
+  const handleOnPress = (index) => {
+    if (!selectedCat.includes(index)) {
+      setSelectedCat([...selectedCat, index]);
+    } else {
+      const newArray = selectedCat.filter((i) => i !== index);
+      setSelectedCat(newArray);
+    }
+  };
+
+  const filterModal = () => {
+    return (
+      <CustomBottomSheetModal ref={bottomSheetRef}>
+        <ScrollView style={{ flex: 1 }}>
+          <View style={{ marginLeft: 20, marginTop: 20 }}>
+            <Text style={styles.heading}>Region</Text>
+          </View>
+          <View style={styles.checkboxwrappers}>
+            <View style={styles.checkboxwrapper}>
+              <CheckBox
+                isChecked={isChecked.north}
+                onClick={() =>
+                  SetIsChecked({ ...isChecked, north: !isChecked.north })
+                }
+              />
+              <Text>North</Text>
+            </View>
+            <View style={styles.checkboxwrapper}>
+              <CheckBox
+                isChecked={isChecked.south}
+                onClick={() =>
+                  SetIsChecked({ ...isChecked, south: !isChecked.south })
+                }
+              />
+              <Text>South</Text>
+            </View>
+            <View style={styles.checkboxwrapper}>
+              <CheckBox
+                isChecked={isChecked.east}
+                onClick={() =>
+                  SetIsChecked({ ...isChecked, east: !isChecked.east })
+                }
+              />
+              <Text>East</Text>
+            </View>
+            <View style={styles.checkboxwrapper}>
+              <CheckBox
+                isChecked={isChecked.west}
+                onClick={() =>
+                  SetIsChecked({ ...isChecked, west: !isChecked.west })
+                }
+              />
+              <Text>West</Text>
+            </View>
+          </View>
+
+          {/* Location */}
+          <View style={{ marginLeft: 20, marginTop: 10 }}>
+            <Text style={styles.heading}>Location</Text>
+          </View>
+
+          <View style={{ padding: 20, marginTop: -10 }}>
+            <MultiSelect
+              style={styles.dropdown}
+              placeholderStyle={{ fontSize: 14 }}
+              selectedTextStyle={styles.selectedTextStyle}
+              data={locationList}
+              labelField="label"
+              valueField="value"
+              placeholder="Select locations..."
+              value={selected}
+              onChange={(item) => {
+                SetSelected(item);
+              }}
+              selectedStyle={styles.selectedStyle}
+            />
+          </View>
+
+          {/* Service types */}
+          <View>
+            <View style={{ marginLeft: 20, marginBottom: -20 }}>
+              <Text style={styles.heading}>Service types</Text>
+            </View>
+
+            <View style={{ padding: 20 }}>
+              <MultiSelect
+                style={styles.dropdown}
+                placeholderStyle={{ fontSize: 14 }}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={serviceList}
+                labelField="label"
+                valueField="value"
+                placeholder="Select services..."
+                value={selectedService}
+                onChange={(item) => {
+                  SetSelectedService(item);
+                }}
+                selectedStyle={styles.selectedStyle}
+              />
+            </View>
+          </View>
+
+          {/* Categories List */}
+          <View>
+            <View style={{ marginLeft: 20 }}>
+              <Text style={styles.heading}>Categories</Text>
+            </View>
+            <View style={styles.catContainer}>
+              {catList.map((item, index) => (
+                <TouchableOpacity onPress={() => handleOnPress(index)}>
+                  <View
+                    style={[
+                      styles.catCard,
+                      {
+                        backgroundColor: selectedCat.includes(index)
+                          ? Colours.primary
+                          : Colours.white,
+                      },
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        styles.catText,
+                        {
+                          color: selectedCat.includes(index)
+                            ? Colours.white
+                            : Colours.black,
+                        },
+                      ]}
+                    >
+                      {item}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        </ScrollView>
+
+        {/* Buttons */}
+        <View style={{ paddingHorizontal: 20, marginBottom: 10 }}>
+          <TouchableOpacity
+            onPress={() => dismiss()}
+            style={{
+              padding: 14,
+              backgroundColor: Colours.primary,
+              borderRadius: 10,
+              alignItems: "center",
+            }}
+          >
+            <Text style={styles.btnText}>Apply Filters</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => dismiss()}
+            style={{
+              padding: 14,
+              backgroundColor: Colours.btn,
+              marginTop: 10,
+              borderRadius: 10,
+              alignItems: "center",
+            }}
+          >
+            <Text style={styles.btnText2}>Reset Filters</Text>
+          </TouchableOpacity>
+        </View>
+      </CustomBottomSheetModal>
+    );
+  };
+
   return (
     <View style={styles.root}>
       <View style={styles.container}>
         <SearchBar
           isClassic={isClassic}
           SetIsClassic={SetIsClassic}
-          isFilterOpen={isFilterOpen}
-          SetIsFilterOpen={SetIsFilterOpen}
+          handleOpenPress={handleOpenPress}
+          // handleClosePress={dismiss}
           searchHealthcare={searchHealthcare}
         />
         <HeightSpace value={15} />
@@ -107,172 +294,7 @@ export default function SearchHealthcare() {
             isClassic={isClassic}
           />
         )}
-
-        {/* Modal popup */}
-        <Modal
-          animationType="none"
-          statusBarTranslucent={true}
-          transparent={true}
-          visible={isFilterOpen}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            SetIsFilterOpen(!isFilterOpen);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <View style={{ alignSelf: "center" }}>
-                <Text style={styles.heading}>Filter</Text>
-              </View>
-              {/* Region */}
-              <View>
-                <View style={{ marginLeft: 20, marginTop: 20 }}>
-                  <Text style={styles.heading}>Region</Text>
-                </View>
-                <View style={styles.checkboxwrappers}>
-                  <View style={styles.checkboxwrapper}>
-                    <CheckBox
-                      isChecked={isChecked.north}
-                      onClick={() =>
-                        SetIsChecked({ ...isChecked, north: !isChecked.north })
-                      }
-                    />
-                    <Text>North</Text>
-                  </View>
-                  <View style={styles.checkboxwrapper}>
-                    <CheckBox
-                      isChecked={isChecked.south}
-                      onClick={() =>
-                        SetIsChecked({ ...isChecked, south: !isChecked.south })
-                      }
-                    />
-                    <Text>South</Text>
-                  </View>
-                  <View style={styles.checkboxwrapper}>
-                    <CheckBox
-                      isChecked={isChecked.east}
-                      onClick={() =>
-                        SetIsChecked({ ...isChecked, east: !isChecked.east })
-                      }
-                      rightText="East"
-                      rightTextStyle={{ marginLeft: 1 }}
-                    />
-                    <Text>East</Text>
-                  </View>
-                  <View style={styles.checkboxwrapper}>
-                    <CheckBox
-                      isChecked={isChecked.west}
-                      onClick={() =>
-                        SetIsChecked({ ...isChecked, west: !isChecked.west })
-                      }
-                      rightText="West"
-                      rightTextStyle={{ marginLeft: 1 }}
-                    />
-                    <Text>West</Text>
-                  </View>
-                </View>
-              </View>
-              <HLine margin="2.5%" marginTop={10} marginBottom={10} />
-              {/* Location */}
-              <View>
-                <View style={{ marginLeft: 20, marginBottom: -20 }}>
-                  <Text style={styles.heading}>Location</Text>
-                </View>
-
-                <View style={{ padding: 20 }}>
-                  <MultiSelect
-                    style={styles.dropdown}
-                    placeholderStyle={{ fontSize: 14 }}
-                    selectedTextStyle={styles.selectedTextStyle}
-                    data={locationList}
-                    labelField="label"
-                    valueField="value"
-                    placeholder="Select locations..."
-                    value={selected}
-                    onChange={(item) => {
-                      SetSelected(item);
-                    }}
-                    selectedStyle={styles.selectedStyle}
-                  />
-                </View>
-              </View>
-              <HLine margin="2.5%" marginTop={0} marginBottom={10} />
-
-              {/* Service types */}
-              <View>
-                <View style={{ marginLeft: 20, marginBottom: -20 }}>
-                  <Text style={styles.heading}>Service types</Text>
-                </View>
-
-                <View style={{ padding: 20 }}>
-                  <MultiSelect
-                    style={styles.dropdown}
-                    placeholderStyle={{ fontSize: 14 }}
-                    selectedTextStyle={styles.selectedTextStyle}
-                    data={serviceList}
-                    labelField="label"
-                    valueField="value"
-                    placeholder="Select services..."
-                    value={selectedService}
-                    onChange={(item) => {
-                      SetSelectedService(item);
-                    }}
-                    selectedStyle={styles.selectedStyle}
-                  />
-                </View>
-              </View>
-
-              <HLine margin="2.5%" marginTop={0} marginBottom={10} />
-              {/* Healthcare institutions */}
-              <View>
-                <View style={{ marginLeft: 20, marginBottom: -20 }}>
-                  <Text style={styles.heading}>Healthcare institutions</Text>
-                </View>
-
-                <View style={{ padding: 20 }}>
-                  <MultiSelect
-                    style={styles.dropdown}
-                    placeholderStyle={{ fontSize: 14 }}
-                    selectedTextStyle={styles.selectedTextStyle}
-                    data={healthcareList2}
-                    labelField="label"
-                    valueField="value"
-                    placeholder="Select healthcare institutions..."
-                    value={selectedHealthcare}
-                    onChange={(item) => {
-                      SetSelectedHealthcare(item);
-                    }}
-                    selectedStyle={styles.selectedStyle}
-                  />
-                </View>
-              </View>
-
-              {/* Cancel & Apply Buttons */}
-              <View
-                style={{
-                  flexDirection: "row",
-                  gap: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: 10,
-                  bottom: 0,
-                  position: "absolute",
-                }}
-              >
-                <View style={styles.btn}>
-                  <TouchableOpacity onPress={() => SetIsFilterOpen(false)}>
-                    <Text>Cancel</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.btn}>
-                  <TouchableOpacity onPress={() => SetIsFilterOpen(false)}>
-                    <Text>Apply</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View>
-          </View>
-        </Modal>
+        {filterModal()}
       </View>
     </View>
   );
@@ -345,7 +367,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   checkboxwrappers: {
-    marginVertical: -20,
+    marginVertical: 10,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 10,
@@ -360,7 +382,8 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "Inter-Bold",
+    color: Colours.text2,
   },
   selectedTextStyle: {
     fontSize: 12,
@@ -369,5 +392,31 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: "white",
     padding: 1,
+  },
+  btnText: {
+    fontSize: 16,
+    fontFamily: "Inter-Bold",
+    color: Colours.white,
+  },
+  btnText2: {
+    fontSize: 16,
+    fontFamily: "Inter-Bold",
+    color: Colours.black,
+  },
+  catContainer: {
+    marginTop: 10,
+    paddingHorizontal: 20,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    gap: 10,
+  },
+  catCard: {
+    backgroundColor: Colours.primary,
+    padding: 10,
+    borderRadius: 7,
+  },
+  catText: {
+    fontSize: 14,
+    fontFamily: "Inter-Regular",
   },
 });

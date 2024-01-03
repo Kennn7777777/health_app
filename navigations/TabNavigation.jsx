@@ -32,8 +32,8 @@ export default function TabNavigation() {
         tabBarActiveTintColor: Colours.primary,
         tabBarInactiveTintColor: Colours.icon,
         tabBarStyle: {
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
           backgroundColor: Colours.white,
           height: 60,
         },
@@ -71,6 +71,9 @@ export default function TabNavigation() {
           tabBarLabel: "Services",
           headerTitle: "Services",
           headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: Colours.background,
+          },
         }}
       />
       <Tab.Screen

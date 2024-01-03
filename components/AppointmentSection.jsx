@@ -95,8 +95,18 @@ export default function AppointmentSection({ id }) {
               submitData
             );
 
-            Alert.alert("Success", "Booking success!");
-            navigation.replace("Appointment");
+            Alert.alert("Success", "Appointment booked successfully!", [
+              {
+                text: "Ok",
+                onPress: async () => {
+                  navigation.reset({
+                    index: 0,
+                    routes: [{ name: "Appointment" }],
+                  });
+                  // navigation.navigate("Appointment");
+                },
+              },
+            ]);
           } catch (error) {
             Alert.alert("Submit fail");
           }

@@ -14,54 +14,43 @@ import {
 
 export default function OurServices() {
   const navigation = useNavigation();
+
+  const size = 30;
   const serviceList = [
     {
       id: 1,
       name: "Hospitals",
-      icon: <FontAwesome5 name="hospital-alt" size={24} color="black" />,
+      icon: <FontAwesome5 name="hospital-alt" size={size} color="black" />,
     },
     {
       id: 2,
       name: "Lab results",
-      icon: <Fontisto name="blood-test" size={24} color="black" />,
+      icon: <Fontisto name="blood-test" size={size} color="black" />,
     },
     {
       id: 3,
       name: "Medication reminder",
-      icon: <FontAwesome5 name="pills" size={24} color="black" />,
+      icon: <FontAwesome5 name="pills" size={size} color="black" />,
     },
     {
       id: 4,
       name: "Health Screening",
-      icon: <MaterialIcons name="local-hospital" size={24} color="black" />,
+      icon: <MaterialIcons name="local-hospital" size={size} color="black" />,
     },
     {
       id: 5,
       name: "Fitness Programmes",
-      icon: <Ionicons name="md-fitness" size={24} color="black" />,
+      icon: <Ionicons name="md-fitness" size={size * 1.2} color="black" />,
     },
     {
       id: 6,
       name: "Payments",
-      icon: <MaterialIcons name="payment" size={24} color="black" />,
+      icon: <MaterialIcons name="payment" size={size} color="black" />,
     },
   ];
 
   return (
     <View style={{ marginTop: 20 }}>
-      {/* <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      > 
-      <Text style={{ fontSize: 20 }}>Our Services</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text>View all</Text>
-        </TouchableOpacity>
-      </View> */}
       <SectionHeader title="Our Services" />
 
       <FlatList
@@ -69,12 +58,8 @@ export default function OurServices() {
         data={serviceList}
         numColumns={3}
         keyExtractor={(item) => item.id}
-        // columnWrapperStyle={{
-        //   flex: 1,
-        //   justifyContent: "space-between",
-        // }}
         renderItem={({ item }) => {
-          return <IconButon text={item.name} icon={item.icon} />;
+          return <IconButon text={item.name} icon={item.icon} fontSize={12} />;
         }}
       />
     </View>

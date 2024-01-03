@@ -12,7 +12,7 @@ import {
 import Colours from "../Shared/Colours";
 
 export default function Services() {
-  const size = 24;
+  const size = 45;
   const serviceList = [
     {
       id: 1,
@@ -26,28 +26,30 @@ export default function Services() {
     },
     {
       id: 3,
-      name: "Medication reminder",
+      name: "Medication \nreminder",
       icon: <FontAwesome5 name="pills" size={size} color="black" />,
     },
     {
       id: 4,
-      name: "Health Screening",
-      icon: <MaterialIcons name="local-hospital" size={26} color="black" />,
+      name: "Health \nScreening",
+      icon: (
+        <MaterialIcons name="local-hospital" size={size * 1.2} color="black" />
+      ),
     },
     {
       id: 5,
-      name: "Fitness Programmes",
+      name: "Fitness \nProgrammes",
       icon: <Ionicons name="md-fitness" size={size} color="black" />,
     },
     {
       id: 6,
       name: "Payments",
-      icon: <MaterialIcons name="payment" size={size} color="black" />,
+      icon: <MaterialIcons name="payment" size={size * 1.1} color="black" />,
     },
     {
       id: 7,
       name: "Health checkup",
-      icon: <FontAwesome name="stethoscope" size={26} color="black" />,
+      icon: <FontAwesome name="stethoscope" size={size * 1.1} color="black" />,
     },
     {
       id: 8,

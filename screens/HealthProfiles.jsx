@@ -12,7 +12,7 @@ export default function HealthProfiles() {
         <HeightSpacer value={10} />
         <View style={styles.container}>
           <View style={{ paddingLeft: 10, paddingBottom: 30 }}>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>John Doe </Text>
+            <Text style={styles.name}>John Doe </Text>
 
             <View style={{ marginTop: 14 }}>
               <View style={{ flexDirection: "row", gap: 90 }}>
@@ -28,7 +28,7 @@ export default function HealthProfiles() {
 
             <View style={{ position: "absolute", bottom: 0, right: 0 }}>
               <TouchableOpacity>
-                <Text>Edit Profile &gt;</Text>
+                <Text style={styles.small}>Edit Profile &gt;</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -47,7 +47,7 @@ export default function HealthProfiles() {
                 <Text style={styles.fontb}>Paul</Text>
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 16 }}>Son</Text>
+                <Text style={styles.fontr}>Son</Text>
               </View>
               <View style={{ position: "absolute", right: 0 }}>
                 <Text style={styles.arrow}>&gt;</Text>
@@ -63,7 +63,7 @@ export default function HealthProfiles() {
                 <Text style={styles.fontb}>Peter</Text>
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 16 }}>Son</Text>
+                <Text style={styles.fontr}>Son</Text>
               </View>
               <View style={{ position: "absolute", right: 0 }}>
                 <Text style={styles.arrow}>&gt;</Text>
@@ -81,7 +81,7 @@ export default function HealthProfiles() {
               <Text style={styles.fontb}>Dr. Jack</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 16 }}>Doctor</Text>
+              <Text style={styles.fontr}>Doctor</Text>
             </View>
             <View style={{ position: "absolute", right: 0 }}>
               <Text style={styles.arrow}>&gt;</Text>
@@ -97,6 +97,10 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: Colours.background,
+  },
+  name: {
+    fontSize: 16,
+    fontFamily: "Inter-Bold",
   },
   container: {
     // margin: 16,
@@ -117,13 +121,22 @@ const styles = StyleSheet.create({
   },
   small: {
     fontSize: 14,
+    fontFamily: "Inter-Medium",
+    color: Colours.text,
   },
   fontb: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "Inter-Regular",
+    color: Colours.black,
+  },
+  fontr: {
+    fontSize: 16,
+    fontFamily: "Inter-Regular",
+    color: Colours.sub,
   },
   arrow: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: "Inter-Regular",
+    color: Colours.text,
   },
 });
