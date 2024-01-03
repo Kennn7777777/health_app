@@ -13,7 +13,6 @@ const useFetchAppts = (userId) => {
   const navigation = useNavigation();
 
   const fetchAppts = async () => {
-    console.log("START");
     setIsLoading(true);
 
     try {
