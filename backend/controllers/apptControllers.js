@@ -53,6 +53,21 @@ module.exports = {
     }
   },
 
+  // update an appt
+  updateAppt: async (req, res) => {
+    try {
+      const apptId = req.params.id;
+      const update = req.body;
+
+      const apptInfo = await Appointment.findByIdAndUpdate(apptId, update);
+
+      res.status(200).json("Rescheduled successfully!");
+    } catch (error) {
+      console.log(error);
+      res.status(500).json("fail to retrieve");
+    }
+  },
+
   // user id
   deleteApptById: async (req, res) => {
     try {

@@ -69,6 +69,20 @@ export default function AppointmentCardItem({
     ]);
   };
 
+  const handleReschedule = () => {
+    Alert.alert("Confirm", "Are you sure you want to reschedule appointment?", [
+      { text: "Cancel", onPress: () => {} },
+      {
+        text: "Ok",
+        onPress: async () => {
+          navigation.navigate("RescheduleAppointment", {
+            healthcare: healthcare,
+          });
+        },
+      },
+    ]);
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -109,7 +123,7 @@ export default function AppointmentCardItem({
             </TouchableOpacity>
           </View>
           <View style={styles.btn({ color: Colours.primary })}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={handleReschedule}>
               <Text style={styles.btnText({ size: 14, color: Colours.white })}>
                 Reschedule
               </Text>

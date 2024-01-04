@@ -7,6 +7,7 @@ import Login from "../screens/Login";
 import SearchHealthcare from "../screens/SearchHealthcare";
 import HealthcareDetails from "../screens/HealthcareDetails";
 import BookAppointment from "../screens/BookAppointment";
+import RescheduleAppointment from "../screens/RescheduleAppointment";
 import Colours from "../Shared/Colours";
 
 const Stack = createStackNavigator();
@@ -53,6 +54,17 @@ export default function ApptNavigation() {
         component={BookAppointment}
         options={{
           headerTitle: "Book Appointment",
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: Colours.background,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="RescheduleAppointment"
+        component={RescheduleAppointment}
+        options={{
+          headerTitle: "Reschedule Appointment",
           headerTitleAlign: "center",
           headerStyle: {
             backgroundColor: Colours.background,
