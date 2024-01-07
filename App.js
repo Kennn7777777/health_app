@@ -14,8 +14,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 const Stack = createStackNavigator();
 
 export default function App() {
-  <StatusBar style="dark" />;
-
   const [isLogin, setIsLogin] = useState(false);
 
   let [fontsLoaded] = useFonts({
