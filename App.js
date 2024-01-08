@@ -46,6 +46,11 @@ export default function App() {
       ) : (
         <Login setIsLogin={setIsLogin} />
       )}
+      <StatusBar
+        style="dark"
+        translucent={false}
+        backgroundColor="rgba(0, 0, 0, 0.0)"
+      />
     </SafeAreaView>
   );
 }
