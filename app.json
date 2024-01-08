@@ -8,7 +8,6 @@
     "userInterfaceStyle": "dark",
     "androidStatusBar": {
       "barStyle": "dark-content",
-      "backgroundColor": "transparent",
       "translucent": true
     },
     "splash": {
