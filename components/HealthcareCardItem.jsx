@@ -65,43 +65,6 @@ export default function InstitutionCardItem({ healthcare, isClassic }) {
           <MaterialIcons name="location-on" size={16} color={Colours.primary} />
           <Text style={styles.info({ size: 14 })}>{healthcare.address}</Text>
         </View>
-
-        {/* <FlatList
-          data={healthcare.services}
-          horizontal={true}
-          renderItem={({ item, index }) => (
-            <Text style={styles.services({ size: 12 })}>
-              {item.slice}
-              {`${item}${index === length - 1 ? "" : ","}`}
-            </Text>
-          )}
-        /> */}
-
-        {/* <View
-          style={{ borderBottomWidth: 1, borderColor: "#8d8d8d63", margin: 5 }}
-        /> */}
-        {/* <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 5,
-          }}
-        >
-          <Ionicons name="time" size={20} color={Colours.primary} />
-          <Text>{healthcare.openingHours}</Text>
-        </View>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 5,
-          }}
-        >
-          <Ionicons name="location" size={20} color={Colours.primary} />
-          <Text>{healthcare.address}</Text>
-        </View> */}
       </View>
     </View>
   );

@@ -10,14 +10,6 @@ export default function HealthcareInfo({ healthcare }) {
     <View>
       <Text style={styles.title({ size: 20 })}>{healthcare.name}</Text>
 
-      {/* <View
-        style={{
-          borderBottomWidth: 1,
-          borderColor: "#8d8d8d63",
-          margin: 5,
-          marginBottom: 15,
-        }}
-      /> */}
       <WLine />
 
       <View style={styles.row}>
