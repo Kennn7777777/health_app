@@ -10,7 +10,7 @@ Welcome to HealthHub Connect, your personalized health and wellness companion de
 2. **Appointment History**
    - Include information such as date, time, service booked, healthcare provider details, and location for each current and past appointments
    - Grouped status of each appointment to give users a quick overview 
-4. **Service Listing**
+4. **Healthcare providers Listing**
    - Display a list of available services or healthcare providers
    - Include detailed descriptions and opening date and time
    - Search and filtering to find specific services and providers easily
