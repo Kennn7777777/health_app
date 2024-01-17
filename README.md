@@ -7,6 +7,7 @@ Welcome to HealthHub Connect, your personalized health and wellness companion ap
 - Frontend: React Native
 - Backend: Nodejs & Expressjs
 - Database: MongoDB
+- Cloud Hosting Service: Render
 
 ## Current Features
 1. **Appointment Booking**
