@@ -1,9 +1,14 @@
-# HealthHub Connect (React Native)
+# HealthHub Connect Application
 
 ## Project Description
-Welcome to HealthHub Connect, your personalized health and wellness companion designed to empower you on your journey to a healthier and happier life. This innovative app is committed to providing a seamless and comprehensive platform for managing all aspects of your well-being.
+Welcome to HealthHub Connect, your personalized health and wellness companion application designed to empower you on your journey to a healthier and happier life. This innovative app is committed to providing a seamless and comprehensive platform for managing all aspects of your well-being.
 
-## Current Features:
+## Tech Stack (MERN)
+- Frontend: React Native
+- Backend: Nodejs & Expressjs
+- Database: MongoDB
+
+## Current Features
 1. **Appointment Booking**
    - Provide a intuitive and user-friendly booking interface for selecting healthcare providers, services, dates, and time
    - Rescheduling and Cancellation of appointment booking.
