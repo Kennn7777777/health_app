@@ -32,6 +32,7 @@ Welcome to HealthHub Connect, your personalized health and wellness companion ap
 ### Figma Screenshots
 ![figma1](https://github.com/Kennn7777777/health_app/assets/74097893/e4d90eb1-8129-49e7-8eb5-65a6da9e3ff1)
 ![figma2](https://github.com/Kennn7777777/health_app/assets/74097893/834a6651-a8aa-4bf1-811e-7d5a2d71b439)
+
 ![figma3](https://github.com/Kennn7777777/health_app/assets/74097893/2c453542-36a1-4902-b533-5d8b7d053c8f)
 
 ### Figma Link: https://shorturl.at/EOX27
@@ -39,4 +40,6 @@ Welcome to HealthHub Connect, your personalized health and wellness companion ap
 ### In-app Screenshots
 ![app1](https://github.com/Kennn7777777/health_app/assets/74097893/fed0cdc2-d505-464e-b8b0-b78c63279e3c)
 ![app2](https://github.com/Kennn7777777/health_app/assets/74097893/1b98c8bf-70ec-4a75-9621-c4012f0ffb34)
+![app3](https://github.com/Kennn7777777/health_app/assets/74097893/0dcb0ec4-ec71-4d38-9c7e-b7f37e8a910c)
+
 
