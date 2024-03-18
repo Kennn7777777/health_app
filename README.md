@@ -38,4 +38,5 @@ Welcome to HealthHub Connect, your personalized health and wellness companion ap
 
 ### In-app Screenshots
 ![app1](https://github.com/Kennn7777777/health_app/assets/74097893/fed0cdc2-d505-464e-b8b0-b78c63279e3c)
+![app2](https://github.com/Kennn7777777/health_app/assets/74097893/1b98c8bf-70ec-4a75-9621-c4012f0ffb34)
 
